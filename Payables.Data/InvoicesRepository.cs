@@ -34,8 +34,8 @@ namespace Payables.Data
             {
                 connection.Open();
                 
-                reader = selectInvoicesCommand.ExecuteReader();
-
+                reader = selectInvoicesCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                //commandbehavior close connection, connectie wordt ook gesloten als command reader gdn is
                 int indexInvoiceNumber = reader.GetOrdinal("InvoiceNumber");
                 int indexInvoiceDate = reader.GetOrdinal("InvoiceDate");
                 int indexInvoiceDueDate = reader.GetOrdinal("InvoiceDueDate");
@@ -65,7 +65,8 @@ namespace Payables.Data
             }
             finally
             {
-                connection.Close();
+                reader?.Close();
+                connection?.Close();
             }
             return invoiceList;
         }
