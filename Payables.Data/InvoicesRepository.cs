@@ -56,11 +56,12 @@ namespace Payables.Data
                     invoice.PaymentTotal = reader.GetDecimal(indexPaymentTotal);
                     invoice.InvoiceTotal = reader.GetDecimal(indexInvoiceTotal);
 
+                    invoiceList.Add(invoice);
                 }
             }
             catch (SqlException)
             {
-
+                throw;
             }
             finally
             {
