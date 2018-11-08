@@ -17,8 +17,14 @@ namespace WpfDisplayInvoicesDue
             try
             {
                 //TODO: retrieve invoices due from data layer
+                List<Invoice> invoices = new List<Invoice>();
+                invoices = InvoicesRepository.GetInvoices();
+                //TODO: show a message box when no invoiced are due and close the application  
+                InvoicesListView.ItemsSource = invoices;
 
-                //TODO: show a message box when no invoiced are due and close the application              
+                //InvoicesListView.ItemsSource = InvoicesRepository.GetInvoices();
+
+
             }
             catch (Exception ex)
             {

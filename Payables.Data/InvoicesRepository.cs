@@ -21,6 +21,8 @@ namespace Payables.Data
 
             string selectInvoices = "SELECT * FROM Invoices"; // kan nog een ander select statement achter
                                                               // met ; na 'invoices'
+                                                              //FROM Invoices;SELECT 
+                                                              //NextResult = overgaan naar volgende select
 
 
             //ExecuteReader geeft verschillende records
@@ -38,7 +40,7 @@ namespace Payables.Data
                 //commandbehavior close connection, connectie wordt ook gesloten als command reader gdn is
                 int indexInvoiceNumber = reader.GetOrdinal("InvoiceNumber");
                 int indexInvoiceDate = reader.GetOrdinal("InvoiceDate");
-                int indexInvoiceDueDate = reader.GetOrdinal("InvoiceDueDate");
+                int indexInvoiceDueDate = reader.GetOrdinal("DueDate");
                 int indexCreditTotal = reader.GetOrdinal("CreditTotal");
                 int indexPaymentTotal = reader.GetOrdinal("PaymentTotal");
                 int indexInvoiceTotal = reader.GetOrdinal("InvoiceTotal");
@@ -55,7 +57,7 @@ namespace Payables.Data
                     invoice.CreditTotal = reader.GetDecimal(indexCreditTotal);
                     invoice.PaymentTotal = reader.GetDecimal(indexPaymentTotal);
                     invoice.InvoiceTotal = reader.GetDecimal(indexInvoiceTotal);
-
+                    
                     invoiceList.Add(invoice);
                 }
             }

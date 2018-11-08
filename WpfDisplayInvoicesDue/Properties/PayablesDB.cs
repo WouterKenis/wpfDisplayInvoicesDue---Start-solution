@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Payables.Data
 {
@@ -17,11 +18,10 @@ namespace Payables.Data
             //stringBuilder.DataSource = "(localdb)\\mssqllocaldb";
             //stringBuilder.InitialCatalog = "Payables";
             //stringBuilder.IntegratedSecurity = true;
-            
-            string connectionString = 
-                System.Configuration.ConfigurationManager.ConnectionStrings["payablesConectionString"].ConnectionString;
-            SqlConnection connection = new SqlConnection(connectionString);
 
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["payablesConectionString"].ConnectionString;
+
+            SqlConnection connection = new SqlConnection(connectionString);
             return connection;
         }
     }
