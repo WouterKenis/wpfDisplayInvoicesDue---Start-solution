@@ -16,9 +16,18 @@ namespace Payables.Data
             //1) connection object -> PayablesDB.cs
             //2) connection open
             SqlConnection connection = PayablesDB.GetConnection();
+            try
+            {
+                connection.Open();
+            }
+            catch (SqlException se)
+            {
 
-            connection.Open();
-
+            }
+            finally
+            {
+                connection.Close();
+            }
             return invoiceList;
         }
     }
